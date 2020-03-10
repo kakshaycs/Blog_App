@@ -48,6 +48,12 @@ app.post("/",function(req,res){
    //res.redirect("/");
 });
 
+app.get("/:id",function(req,res){
+   var id = req.params.id;
+   res.send(id);
+});
+
+
 app.listen(process.env.PORT,process.env.IP,function(){
       console.log("running !!");
 });

@@ -2,9 +2,9 @@
 
 
 <div class="container">
-        <div class="row">
+        <div class="row" style="margin-top:20px">
          <% blogs.forEach(function(x){ %>
-         <div class="col-sm-4">
+         <div class="col-sm-4 border border-light " >
             <div > <h3> <%=x.title.substr(0,45) %> </h3> </div>
             <div style="text-align:center">
                <p> <img class="img-thumbnail" style="width:200px; height:200px" src= "<%= x.image %>" ></p>
