@@ -1,0 +1,24 @@
+<%- include("partials/header") %>
+
+
+<div class="container">
+   <h1>Add new post</h1>
+   <form action="/" method="POST">
+       <div class = "form-group">
+           <label>enter your name</label>
+           <input type="text" class="form-control" name=blog[title] placeholder="your name">
+           <label>enter your name</label>
+           <input type="text" class="form-control" name= blog[image] placeholder="image url">
+           <label>enter your name</label>
+           <div contenteditable="true">
+            <textarea type="text" class="form-control" name=blog[description] cols="10" rows = "20"></textarea>
+           </div>
+           <div>
+                 <input type="submit">
+           </div>
+  
+       </div>  
+   </form>
+</div>
+
+<%- include("partials/footer") %>

@@ -31,6 +31,22 @@ app.get("/",function(req,res){
    });
 });
 
+app.get("/new",function(req,res){
+   res.render("new");
+});
+
+app.post("/",function(req,res){
+   console.log(req.body.blog);
+   BLOG.create(req.body.blog,function(err,blog){
+      if(err)
+         console.log(err);
+      else{
+       console.log(blog)
+       res.redirect("/");  
+      }
+   });
+   //res.redirect("/");
+});
 
 app.listen(process.env.PORT,process.env.IP,function(){
       console.log("running !!");

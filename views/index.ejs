@@ -3,7 +3,7 @@
 <h1>Running</h1>
 <% blogs.forEach(function(x){ %>
    <h2> <%=x.title %> </h2>
-   <p> <%= x.image %></p>
+   <p> <img src= <%= x.image %> class="rounded float-left" alt="..."></p>
    <p> <%= x.description %> </p>
 <% }) %>
 
