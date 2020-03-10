@@ -1,10 +1,9 @@
 # Blog_App
 Blog App
+# Restful routing
 
-
-
-#Restful routing
-Name    Path     Http verb     purpose
-Index    /        GET          List all the blogs
-New      /new     GET          show new blog form
-create   /blog    POST         Add new post to the blogs 
+ Name|Path|Http-verb|purpose 
+------|----|---------|---------
+ Index| / | GET |  List all the blogs
+ New  | /new| GET | show new blog form
+ create | /blog | POST |add new post to the blogs 
