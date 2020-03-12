@@ -21,38 +21,61 @@ var BLOG = mongoose.model("blogs",blogSchema);
 //           console.log(blog);   
 // });
 
-
+// home page GET request
 app.get("/",function(req,res){
    BLOG.find({},function(err,blog){
          if(err)
             console.log(err);
          else
-            res.render("index",{blogs:blog});
+            res.render("index",{Blogs:blog});
    });
 });
 
+// GET request for showing new blog form
 app.get("/new",function(req,res){
    res.render("new");
 });
 
+
+// POST request for creating new Blog
 app.post("/",function(req,res){
    console.log(req.body.blog);
    BLOG.create(req.body.blog,function(err,blog){
       if(err)
          console.log(err);
       else{
-       console.log(blog)
+       //console.log(blog)
        res.redirect("/");  
       }
    });
    //res.redirect("/");
 });
 
+
+//GET request for showing details of BLOG
 app.get("/:id",function(req,res){
    var id = req.params.id;
-   res.send(id);
+   BLOG.findById(id,function(err,foundBlog){
+      if(err){
+         console.log(err);
+         res.redirect("/");
+      } else
+         res.render("show",{x:foundBlog});
+   });
 });
 
+
+// GET request for edit form
+app.get("/:id/edit",function(req,res){
+   var id = req.params.id;
+   BLOG.findById(id,function(err,foundBlog){
+      if(err){
+         console.log(err);
+         res.redirect("/");
+      }else
+         res.render("edit",{x:foundBlog});
+   });
+});
 
 app.listen(process.env.PORT,process.env.IP,function(){
       console.log("running !!");

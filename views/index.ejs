@@ -3,7 +3,7 @@
 
 <div class="container">
         <div class="row" style="margin-top:20px">
-         <% blogs.forEach(function(x){ %>
+         <% Blogs.forEach(function(x){ %>
          <div class="col-sm-4 border border-light " >
             <div > <h3> <%=x.title.substr(0,45) %> </h3> </div>
             <div style="text-align:center">
@@ -13,7 +13,7 @@
                 <p style=" margin-bottom:0 " > <%= x.description.substr(0, 240) %> </p>
             </div>
             <div style="text-align:center">
-               <button type="button" class="btn btn-link">Show more</button>
+               <a type="button" class="btn btn-link" href="/<%=x._id%>">Show more</a>
             </div>
             </div>
          
