@@ -10,15 +10,17 @@
          <h3><%=x.title%></h3>
          <p style="font-size: 1.5rem;"><%= x.description %></p>
          
-         <p>
-            <a href = "#" class = "btn btn-primary" role = "button">
-               edit
-            </a> 
+         <div>
+            <div>
+               <a href = "/<%=x._id %>/edit" class = "btn btn-primary" role = "button"> edit </a> 
+            </div>
+            <div>
+               <form action="/<%= x._id %>?_method=DELETE" method="POST">
+               <button class = "btn btn-default"> delete </button>
+               </form>
+            </div>
             
-            <a href = "#" class = "btn btn-default" role = "button">
-               delete
-            </a>
-         </p>
+         </div>
       </div>
 </div>
 

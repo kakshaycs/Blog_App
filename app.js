@@ -1,9 +1,16 @@
+//Add package
 var express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
+var methodOverride = require("method-override");
 var app = express();
+
+
+// app config
 mongoose.connect('mongodb://localhost:27017/Blog', {useNewUrlParser: true, useUnifiedTopology: true});
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(methodOverride("_method"));
+app.use(express.static("public"));
 app.set("view engine","ejs");
 
 var blogSchema = new mongoose.Schema({
@@ -54,8 +61,7 @@ app.post("/",function(req,res){
 
 //GET request for showing details of BLOG
 app.get("/:id",function(req,res){
-   var id = req.params.id;
-   BLOG.findById(id,function(err,foundBlog){
+   BLOG.findById(req.params.id,function(err,foundBlog){
       if(err){
          console.log(err);
          res.redirect("/");
@@ -67,8 +73,7 @@ app.get("/:id",function(req,res){
 
 // GET request for edit form
 app.get("/:id/edit",function(req,res){
-   var id = req.params.id;
-   BLOG.findById(id,function(err,foundBlog){
+   BLOG.findById(req.params.id,function(err,foundBlog){
       if(err){
          console.log(err);
          res.redirect("/");
@@ -77,6 +82,31 @@ app.get("/:id/edit",function(req,res){
    });
 });
 
+//POST request for update
+app.put("/:id",function(req,res){
+   
+   BLOG.findByIdAndUpdate(req.params.id,req.body.blog,function(err,blog){
+      if(err){
+         console.log(err);
+         res.redirect("/");
+      }else
+         res.redirect("/"+req.params.id);
+   });
+});
+
+//Delete request for the Blog
+app.delete("/:id",function(req,res){
+   BLOG.findByIdAndRemove(req.params.id,function(err,blog){
+      if(err)
+         console.log(err);
+         
+      res.redirect("/")
+         
+   });
+   
+});
+
+// running server
 app.listen(process.env.PORT,process.env.IP,function(){
       console.log("running !!");
 });
